@@ -1,0 +1,13 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<header class="header">
+			
+    
+    <form class="search-bar" method="GET" action="/">
+        <input type="search-name" class="contact-search" name="search" placeholder="جستجو"> 
+    </form>
+
+    <!--  ADD-CONTACT BUTTON/ICON -->
+    <a href="{% url 'phone:create' %}"><i class="fas fa-plus-circle add"></i></a>
+    <a href="{% url 'phone:index' %}"><i class="fas fa-home add"></i></a>
+</header>

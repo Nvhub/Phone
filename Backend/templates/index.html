@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}{% static 'style.css' %}{% endblock %}
+{% block title %} لیست افراد {% endblock %}
+
+{% block main %}
+	<section class="contacts-library">
+		<ul class="contacts-list">
+			
+			{% for person in persons %}
+
+				<a href="{% url 'phone:detail' person.id %}">
+					<div class="contact-section">
+						<li class="list__item">
+							<p class="contact-name">{{person.name}}</p>
+							<p class="relationship">{{person.rel}}</p>
+						</li>
+						<li class="list__item">
+							<i class="fas fa-phone"></i>
+							<i class="fas fa-sms text"></i>
+							<a href="{% url 'phone:delete' person.id %}"><i class="fas fa-trash-alt text"></i></a>
+						</li>
+					</div>
+				</a>
+				<hr>
+
+			{% endfor %}
+			{% if not persons %}
+				<p class="contact-name">هیچ کاربری یافت نشد !</p>
+				<hr>
+			{% endif %}
+
+		</ul>
+
+	</section>
+{% endblock %}

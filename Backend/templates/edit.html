@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block link %}{% static 'style-edit.css' %}{% endblock %}
+{% block title %} 
+	{% if request.resolver_match.url_name == "create" %}
+		افزودن شخص جدید
+	{% else %}
+		ویرایش {{person.name}}
+	{% endif %} 
+{% endblock %}
+
+{% block main %}
+	<section class="contact-info">
+
+		<form method="post">{% csrf_token %}
+			
+			
+			<div class="info-line">
+				<i class="fas fa-user icon-gradient"></i>
+				{% render_field form.name type="text" class="type" name="fullname" placeholder="نام و نام خانوادگی" %}
+			</div>
+
+			<div class="info-line">
+				<i class="fas fa-phone icon-gradient"></i>
+				{% render_field form.phone_number type="text" class="type" name="phone_number" placeholder="شماره تلفن" %}
+			</div>
+
+			<div class="info-line">
+				<i class="fas fa-envelope  icon-gradient"></i>
+				{% render_field form.email type="text" class="type" name="email" placeholder="ایمیل" %}
+			</div>
+
+			<div class="info-line">
+				<i class="fas fa-user icon-gradient"></i>
+				{% render_field form.rel type="text" class="type" name="phone_number" placeholder="نسبت شخص" %}
+			</div>
+
+			
+			<section class="button-container">
+				<div class="update-contact">
+					<i  class="fas fa-check-circle icon-gradient"></i>
+					<button class="button" type="submit">ثبت</button>
+				</div>
+			</section>
+		</form>	
+		
+
+	</section>
+
+
+
+	{% if request.resolver_match.url_name == "create" %}
+
+	{% else %}
+
+		<section class="button-container">
+			<a href="delete.html">
+				<div class="update-contact">
+					<i class="fas fa-trash icon-gradient"></i>
+					<button class="button">حذف {{person.name}}</button>
+				</div>
+			</a>
+		</section>
+	{% endif %}
+
+
+{% endblock %}

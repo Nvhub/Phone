@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %} حذف {{person.name}} {% endblock %}
+{% block link %}{% static 'style-delete.css' %}{% endblock %}
+
+{% block main %}
+<div class="container">
+	<header class="hero">
+		<a href="edit.html">
+			<i class="fas fa-chevron-circle-left back-btn"></i>
+		</a>
+		<div class="hero-info">
+			<h1 class="name">{{person.name}}</h1>
+			<p class="relationship-hero">{{person.rel}}</p>
+		</div>
+	</header>
+
+	<section class="delete-container">
+		<p>ایا از حذف {{person.name}} مطمن هستید؟</p>
+		<div class="delete-contact">
+			<i class="fas fa-trash delete-icon"></i>
+			<form method="POST">{% csrf_token %}
+				<button class="delete-button" type="submit" > حذف </button>
+			</form>
+
+
+		</div>
+		<div class="delete-contact">
+			<i class="fas fa-sign-out-alt delete-icon"></i>
+			<a href="{% url 'phone:index' %}" class="delete-button">انصراف</a>
+		</div>
+	</section>
+</div>
+
+
+{% endblock %}
+	
